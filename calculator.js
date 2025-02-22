@@ -18,14 +18,15 @@ let calculation = 0; //just added for my pookie
 keys('.numberKeys').forEach(function(button){
     button.addEventListener('click', function(){
         if (first_int === ' 0 ' && button.innerHTML !== '.') {
-            first_int = first_int
+            first_int += first_int
             first_int = button.innerHTML;
         } else if (!(first_int === '' && button.innerHTML === ' 0 ')) {
             first_int += button.innerHTML;
 
         }
-
+            first_int = first_int.replace(/\s/g, "");
             display.innerHTML = first_int;
+
 
     });
 });
@@ -39,7 +40,7 @@ keys('.arithmeticKeys').forEach(function(button){
         operator = button.innerHTML.trim();
         second_int = first_int.replace(/\s/g, "");
         first_int = '';
-        display.innerHTML = second_int + ' ' + operator;
+        display.innerHTML = operator;
     });
 });
 
@@ -52,7 +53,7 @@ calc('equalsBtn').addEventListener('click', function(){
         }
 
         let total;
-        let int_one = parseInt(first_int.replace(/\s/g, ""));
+        let int_one = parseInt(first_int);
         let int_two = parseInt(second_int);
 
         switch (operator) {
@@ -61,7 +62,7 @@ calc('equalsBtn').addEventListener('click', function(){
             case "-": total = int_one - int_two; break;
             case "×":
             case "*": total = int_one * int_two; break;
-            case "÷":
+
             case "/": total = int_two != 0 ? (int_two / int_one).toFixed(2): "Error"; break;
         }
         
@@ -85,16 +86,17 @@ calc('clearBtn').addEventListener('click', function(){
 });
 
 calc('signBtn').addEventListener('click', function(){
-    if (first_int) {
-        first_int = first_int.replace(/\s/g, "")
+    if (second_int) {
+        second_int = (parseInt(second_int)* -1).toString();
+        display.innerHTML = second_int;
+    } else {
         first_int = (parseInt(first_int)* -1).toString();
-        display.innerHTML = first_int;
+        display.innerHTML =first_int;
     }
 });
 
 calc('percentBtn').addEventListener('click', function(){
     if (first_int){
-        first_int = first_int.replace(/\s/g, "")
         first_int = (parseInt(first_int)/ 100).toString();
         display.innerHTML = first_int;
 
