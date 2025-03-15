@@ -11,7 +11,8 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background: url('img/bg.png') no-repeat;
+    /* background: url('img/bg.png') no-repeat; */
+    background: url('img/newbg.png') center center fixed;
     background-size: cover;
     background-position: center;
     flex-direction: column;
